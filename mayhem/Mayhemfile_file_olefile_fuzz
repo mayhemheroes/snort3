@@ -1,0 +1,9 @@
+project: snort3
+target: file_olefile_fuzz
+cmds:
+  - cmd: /mayhem/file_olefile_fuzz
+    libfuzzer: true
+    dictionary: /mayhem/mayhem/file_olefile_fuzz.dict
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/file_olefile_fuzz/testsuite

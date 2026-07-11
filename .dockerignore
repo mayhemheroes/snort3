@@ -1,0 +1,26 @@
+# .dockerignore for the commit-image build.
+# Goal: bake in the FULL repo (including .git history — the grader uses it),
+# dropping only local build artifacts and editor/OS cruft. Dev image, not minimal.
+# Lands at the fork root (the build context) when the template is copied in.
+
+# ── Build outputs / local cruft ──────────────────────────────────────────────
+# Keep build artifacts out of the context — the COPY boundary is what separates
+# source from artifacts. build.sh produces its outputs under /mayhem at build time.
+# Adjust the patterns per project.
+build/
+out/
+*.o
+*.a
+*.so
+*.dylib
+**/__pycache__/
+
+# ── Editor / OS noise ────────────────────────────────────────────────────────
+.DS_Store
+*.swp
+*~
+
+# snort3-specific: build.sh's own scratch trees (created at container-build time under /mayhem;
+# harmless to exclude here too in case build.sh is ever run directly in a local checkout).
+mayhem-build-fuzz/
+mayhem-build-test/
